@@ -23,12 +23,6 @@
       "text": "Food Shopping Test",
       "day": "May 7th at 12:30pm",
       "reminder": true
-    },
-    {
-      "text": "asdfe",
-      "day": "asdfe",
-      "reminder": false,
-      "id": 5
     }
   ]
 }
