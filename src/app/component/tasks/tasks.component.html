@@ -1,8 +1,20 @@
 <app-add-task
     (onAddTask)="addTask($any($event))"
 ></app-add-task>
+<hr>
+<div class="form-control">
+    <input 
+        type="text" 
+        name="text" 
+        [(ngModel)]="search" 
+        id="search" 
+        placeholder="Search a task"
+        autocomplete="false"
+    >
+    <small class="">test</small>
+</div>
 <app-task-item 
-    *ngFor="let task of fireTasks | async" 
+    *ngFor="let task of fireTasks | async | filter:search" 
     [task]="task"
     (onDeleteTask) ="deleteTask(task)"
     (onToggleReminder) = "toggleReminder(task)"

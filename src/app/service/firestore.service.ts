@@ -8,7 +8,9 @@ import {
   addDoc,
   updateDoc,
   deleteDoc,
-  doc
+  doc,
+  query,
+  where
 
 } from '@angular/fire/firestore'
 
@@ -23,6 +25,7 @@ export class FirestoreService {
   constructor(private fireStore: Firestore) { }
 
   getTasks(): Observable<DocumentData[]>{
+    let q : any;
     const collectionInstance = collection(this.fireStore, 'tasks');
     return collectionData(collectionInstance, {idField: 'id'});
   }

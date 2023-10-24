@@ -11,7 +11,8 @@ import { Observable } from 'rxjs';
 })
 export class TasksComponent implements OnInit{
   tasks: Task [] = [];
-  fireTasks!: Observable<any>;
+  fireTasks!: Observable<any[]>;
+  search: string | any;
 
   constructor(private taskService: TaskService, private firestoreService: FirestoreService) {}
   
