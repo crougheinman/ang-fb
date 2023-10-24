@@ -15,6 +15,7 @@ import { AddTaskComponent } from './component/add-task/add-task.component';
 import { AboutComponent } from './component/about/about.component';
 import { FooterComponent } from './component/footer/footer.component';
 
+import { environment } from 'src/environments/environment';
 import { provideFirebaseApp, getApp, initializeApp } from '@angular/fire/app';
 import { getFirestore, provideFirestore } from '@angular/fire/firestore';
 
@@ -28,16 +29,6 @@ const appRoutes: Routes = [
     component: AboutComponent
   }
 ]
-
-const firebaseConfig = {
-  apiKey: "AIzaSyDYxvym2kkIYOtNAenPp52M_iFkPWyh8vo",
-  authDomain: "ang-fire-b15d9.firebaseapp.com",
-  databaseURL: "https://ang-fire-b15d9-default-rtdb.asia-southeast1.firebasedatabase.app",
-  projectId: "ang-fire-b15d9",
-  storageBucket: "ang-fire-b15d9.appspot.com",
-  messagingSenderId: "879198693668",
-  appId: "1:879198693668:web:100d804861937b62f5ebb1"
-};
 
 @NgModule({
   declarations: [
@@ -57,7 +48,7 @@ const firebaseConfig = {
     HttpClientModule,
     FormsModule,
     RouterModule.forRoot(appRoutes, { enableTracing: true}),
-    provideFirebaseApp(() => initializeApp(firebaseConfig)),
+    provideFirebaseApp(() => initializeApp(environment.firebase)),
     provideFirestore(() => getFirestore()),
   ],
   providers: [],
