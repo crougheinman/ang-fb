@@ -3,6 +3,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http'
 import {Observable} from 'rxjs';
 import {Task} from "../Task";
 
+
 const httpOptions = {
   headers: new HttpHeaders({
     'Content-Type': 'application/json'
@@ -12,7 +13,7 @@ const httpOptions = {
   providedIn: 'root'
 })
 export class TaskService {
-  private apiUrl = 'https://ang-fire-b15d9-default-rtdb.asia-southeast1.firebasedatabase.app/tasks.json';
+  private apiUrl = 'http://localhost:5000/tasks';
 
   constructor(private http:HttpClient) { }
 
@@ -20,15 +21,15 @@ export class TaskService {
     return this.http.get<Task[]>(this.apiUrl);
   }
 
-  deleteTask(task: Task): Observable<Task> {
-    const url = `${this.apiUrl}/${task.id}`;
-    return this.http.delete<Task>(url);
-  }
+  // deleteTask(task: Task): Observable<Task> {
+  //   const url = `${this.apiUrl}/${task.id}`;
+  //   return this.http.delete<Task>(url);
+  // }
 
-  updateTaskReminder(task: Task): Observable<Task> {
-    const url = `${this.apiUrl}/${task.id}`;
-    return this.http.put<Task>(url, task, httpOptions);
-  }
+  // updateTaskReminder(task: Task): Observable<Task> {
+  //   const url = `${this.apiUrl}/${task.id}`;
+  //   return this.http.put<Task>(url, task, httpOptions);
+  // }
 
   addTask(task: Task): Observable<Task>{
     return this.http.post<Task>(this.apiUrl, task, httpOptions);

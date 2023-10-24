@@ -19,11 +19,11 @@ export class TaskItemComponent implements OnInit{
     
   }
 
-  onDelete(task: any) {
+  onDelete(task: Task) {
     this.onDeleteTask.emit(task);
   }
 
-  onToggle(task: any) {
+  onToggle(task: Task) {
     this.onToggleReminder.emit(task);
   }
 }
