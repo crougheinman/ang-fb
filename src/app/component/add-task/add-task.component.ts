@@ -30,6 +30,19 @@ export class AddTaskComponent implements OnInit{
 
   }
 
+  makeid(length: number) {
+    let result = '';
+    const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+    const charactersLength = characters.length;
+
+    let counter = 0;
+    while (counter < length) {
+      result += characters.charAt(Math.floor(Math.random() * charactersLength));
+      counter += 1;
+    }
+    return result;
+  }
+
   onSubmit() {
     if (!this.text) {
       alert('Please add a task');
@@ -37,6 +50,7 @@ export class AddTaskComponent implements OnInit{
     }
 
     const newTask = {
+      id: this.makeid(24),
       text: this.text,
       day: this.day,
       reminder: this.reminder

@@ -12,7 +12,7 @@ const httpOptions = {
   providedIn: 'root'
 })
 export class TaskService {
-  private apiUrl = 'http://localhost:5000/tasks';
+  private apiUrl = 'https://ang-fire-b15d9-default-rtdb.asia-southeast1.firebasedatabase.app/tasks.json';
 
   constructor(private http:HttpClient) { }
 
