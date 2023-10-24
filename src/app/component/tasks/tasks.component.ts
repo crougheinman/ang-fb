@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import {TaskService} from '../../service/task.service'
-import {Task} from "../../Task";
+import { TaskService } from '../../service/task.service'
+import { FirestoreService } from '../../service/firestore.service'
+import { Task } from "../../Task";
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-tasks',
@@ -9,37 +11,29 @@ import {Task} from "../../Task";
 })
 export class TasksComponent implements OnInit{
   tasks: Task [] = [];
+  fireTasks!: Observable<any>;
 
-  constructor(private taskService: TaskService) {}
+  constructor(private taskService: TaskService, private firestoreService: FirestoreService) {}
   
   ngOnInit(): void {
-    this.taskService.getTasks().subscribe(
-      (tasks) => {
-        this.tasks = tasks
-      }
-    );
+    this.fireTasks = this.firestoreService
+      .getTasks();
   }
 
-  deleteTask(task : Task) {
-    this.taskService
-      .deleteTask(task)
-      .subscribe(
-        () => this.tasks = this.tasks.filter(t => t.id !== task.id)
-      );
+  deleteTask(task: Task) {
+    const result = this.firestoreService.deleteTask(task);
+    console.warn(result);
   }
 
   toggleReminder(task: Task) {
-    task.reminder = !task.reminder;
-    this.taskService
+    this.firestoreService
       .updateTaskReminder(task)
-      .subscribe()
+      .subscribe();
   }
 
   addTask(task: Task) {
-    this.taskService
+    this.firestoreService
       .addTask(task)
-      .subscribe(
-        (task) => (this.tasks.push(task))
-      )
+      .subscribe()
   }
 }
