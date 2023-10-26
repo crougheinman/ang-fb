@@ -11,7 +11,7 @@
         placeholder="Search a task"
         autocomplete="false"
     >
-    <small class="">test</small>
+    <small class="search-message">{{ searchMessage }}</small>
 </div>
 <app-task-item 
     *ngFor="let task of fireTasks | async | filter:search" 

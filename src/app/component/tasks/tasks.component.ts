@@ -13,17 +13,26 @@ export class TasksComponent implements OnInit{
   tasks: Task [] = [];
   fireTasks!: Observable<any[]>;
   search: string | any;
+  searchMessage: string = '';
 
   constructor(private taskService: TaskService, private firestoreService: FirestoreService) {}
   
   ngOnInit(): void {
+
     this.fireTasks = this.firestoreService
       .getTasks();
+
+    this.fireTasks.forEach(element => {
+      console.warn(element);
+    });;
+
+      
   }
 
   deleteTask(task: Task) {
-    const result = this.firestoreService.deleteTask(task);
-    console.warn(result);
+    this.firestoreService
+      .deleteTask(task)
+      .subscribe();
   }
 
   toggleReminder(task: Task) {

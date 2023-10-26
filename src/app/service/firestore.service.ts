@@ -1,16 +1,13 @@
 import { Injectable } from '@angular/core';
 import {Observable} from 'rxjs';
 import {
-
   Firestore,
   collection,
   collectionData,
   addDoc,
   updateDoc,
   deleteDoc,
-  doc,
-  query,
-  where
+  doc
 
 } from '@angular/fire/firestore'
 
@@ -25,7 +22,6 @@ export class FirestoreService {
   constructor(private fireStore: Firestore) { }
 
   getTasks(): Observable<DocumentData[]>{
-    let q : any;
     const collectionInstance = collection(this.fireStore, 'tasks');
     return collectionData(collectionInstance, {idField: 'id'});
   }
@@ -41,7 +37,8 @@ export class FirestoreService {
     const id: string | any =  task.id;
     const docInstance = doc(this.fireStore, 'tasks', id);
     const updateData = {
-      reminder: !task.reminder
+      reminder: !task.reminder,
+      updated_at: new Date()
     }
     updateDoc(docInstance, updateData);
     return this.getTasks()
@@ -49,6 +46,8 @@ export class FirestoreService {
 
   addTask(task: Task){
     const collectionInstance = collection(this.fireStore, 'tasks');
+    task.created_at = new Date();
+    task.updated_at = new Date();
     addDoc(collectionInstance, task)
     return this.getTasks()
   }
