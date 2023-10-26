@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 
 @Component({
   selector: 'app-snackbar',
@@ -6,14 +6,6 @@ import { Component } from '@angular/core';
   styleUrls: ['./snackbar.component.scss']
 })
 export class SnackbarComponent {
-  
-  show: boolean = false;
-  
-  showSnackBar(){
-    this.show = true;
-
-    setTimeout(() => {
-      this.show = false;
-    }, 3000);
-  }
+  @Input() toggle: boolean = false;
+  @Input() message: string | any = '';
 }

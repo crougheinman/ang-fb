@@ -11,7 +11,6 @@
         placeholder="Search a task"
         autocomplete="false"
     >
-    <small class="search-message">{{ searchMessage }}</small>
 </div>
 <app-task-item 
     *ngFor="let task of fireTasks | async | filter:search" 
@@ -19,3 +18,7 @@
     (onDeleteTask) ="deleteTask(task)"
     (onToggleReminder) = "toggleReminder(task)"
 ></app-task-item>
+<app-snackbar
+    [toggle] ="snackBarToggle"
+    [message] ="snackBarMessage"
+></app-snackbar>

@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { TaskService } from '../../service/task.service'
 import { FirestoreService } from '../../service/firestore.service'
 import { Task } from "../../Task";
 import { Observable } from 'rxjs';
@@ -13,26 +12,33 @@ export class TasksComponent implements OnInit{
   tasks: Task [] = [];
   fireTasks!: Observable<any[]>;
   search: string | any;
-  searchMessage: string = '';
+  snackBarToggle: boolean = false;
+  snackBarMessage: string = '';
 
-  constructor(private taskService: TaskService, private firestoreService: FirestoreService) {}
+  constructor(
+    private firestoreService: FirestoreService
+  ) {}
   
-  ngOnInit(): void {
+  say(message: string | any){
+    this.snackBarToggle = true;
+    this.snackBarMessage = message;
+    setTimeout(() => {
+      this.snackBarToggle = false;
+    }, 3000);
+  }
 
+  ngOnInit(): void {
     this.fireTasks = this.firestoreService
       .getTasks();
-
-    this.fireTasks.forEach(element => {
-      console.warn(element);
-    });;
-
-      
   }
 
   deleteTask(task: Task) {
     this.firestoreService
       .deleteTask(task)
-      .subscribe();
+      .subscribe(
+        () => {
+          this.say('"' + task.text + '" has has deleted')
+        });
   }
 
   toggleReminder(task: Task) {
@@ -44,6 +50,11 @@ export class TasksComponent implements OnInit{
   addTask(task: Task) {
     this.firestoreService
       .addTask(task)
-      .subscribe()
+      .subscribe(
+        () => {
+          this.say('"' + task.text + '" has added')
+        }
+      )
   }
+  
 }
