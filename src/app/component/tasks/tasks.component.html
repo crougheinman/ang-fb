@@ -12,8 +12,30 @@
         autocomplete="false"
     >
 </div>
+<div class="form-control form-control-inline">
+    <div>
+        <label for="sort-latest">Latest</label>
+        <input 
+            (change)="sort = 'desc'"
+            type="radio" 
+            id="sort-latest" 
+            name="sort"
+            [checked] = "latest"
+        >
+    </div>
+    <div>
+        <label for="sort-oldest">Oldest</label>
+        <input 
+            (change)="sort = 'asc'"
+            type="radio" 
+            id="sort-oldest" 
+            name="sort"
+            [checked] = "!latest"
+        >
+    </div>
+</div>
 <app-task-item 
-    *ngFor="let task of fireTasks | async | filter:search" 
+    *ngFor="let task of fireTasks | async | filter:search | sort: ['updated_at', sort]" 
     [task]="task"
     (onDeleteTask) ="deleteTask(task)"
     (onToggleReminder) = "toggleReminder(task)"

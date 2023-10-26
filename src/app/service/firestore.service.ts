@@ -7,7 +7,10 @@ import {
   addDoc,
   updateDoc,
   deleteDoc,
-  doc
+  doc,
+  query,
+  orderBy,
+  OrderByDirection
 
 } from '@angular/fire/firestore'
 

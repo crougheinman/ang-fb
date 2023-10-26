@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FirestoreService } from '../../service/firestore.service'
 import { Task } from "../../Task";
 import { Observable } from 'rxjs';
+import { OrderByDirection } from '@angular/fire/firestore';
 
 @Component({
   selector: 'app-tasks',
@@ -14,10 +15,17 @@ export class TasksComponent implements OnInit{
   search: string | any;
   snackBarToggle: boolean = false;
   snackBarMessage: string = '';
+  sort: string = 'desc';
+  latest: boolean = (this.sort === 'desc');
 
   constructor(
     private firestoreService: FirestoreService
   ) {}
+
+  ngOnInit(): void {
+    this.fireTasks = this.firestoreService
+      .getTasks();
+  }
   
   say(message: string | any){
     this.snackBarToggle = true;
@@ -25,11 +33,6 @@ export class TasksComponent implements OnInit{
     setTimeout(() => {
       this.snackBarToggle = false;
     }, 3000);
-  }
-
-  ngOnInit(): void {
-    this.fireTasks = this.firestoreService
-      .getTasks();
   }
 
   deleteTask(task: Task) {
