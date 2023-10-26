@@ -19,6 +19,7 @@ import { environment } from 'src/environments/environment';
 import { provideFirebaseApp, getApp, initializeApp } from '@angular/fire/app';
 import { getFirestore, provideFirestore } from '@angular/fire/firestore';
 import { FilterPipe } from './filter.pipe';
+import { SnackbarComponent } from './component/snackbar/snackbar.component';
 
 const appRoutes: Routes = [
   {
@@ -41,7 +42,8 @@ const appRoutes: Routes = [
     AddTaskComponent,
     AboutComponent,
     FooterComponent,
-    FilterPipe
+    FilterPipe,
+    SnackbarComponent
   ],
   imports: [
     BrowserModule,
