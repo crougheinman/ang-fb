@@ -35,7 +35,7 @@
     </div>
 </div>
 <app-task-item 
-    *ngFor="let task of fireTasks | async | filter:search | sort: ['updated_at', sort]" 
+    *ngFor="let task of fireTasks | async | filter:search |sort: ['updated_at', sort]" 
     [task]="task"
     (onDeleteTask) ="deleteTask(task)"
     (onToggleReminder) = "toggleReminder(task)"
