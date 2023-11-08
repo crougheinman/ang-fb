@@ -21,6 +21,7 @@ import { getFirestore, provideFirestore } from '@angular/fire/firestore';
 import { FilterPipe } from './filter.pipe';
 import { SnackbarComponent } from './component/snackbar/snackbar.component';
 import { SortPipe } from './sort.pipe';
+import { TaskStatusFilterPipe } from './task-status-filter.pipe';
 
 const appRoutes: Routes = [
   {
@@ -45,7 +46,8 @@ const appRoutes: Routes = [
     FooterComponent,
     FilterPipe,
     SnackbarComponent,
-    SortPipe
+    SortPipe,
+    TaskStatusFilterPipe
   ],
   imports: [
     BrowserModule,

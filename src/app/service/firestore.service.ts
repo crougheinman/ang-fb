@@ -7,11 +7,7 @@ import {
   addDoc,
   updateDoc,
   deleteDoc,
-  doc,
-  query,
-  orderBy,
-  OrderByDirection
-
+  doc
 } from '@angular/fire/firestore'
 
 import { Task } from "../Task";

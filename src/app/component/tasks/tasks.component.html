@@ -34,12 +34,41 @@
         >
     </div>
 </div>
-<app-task-item 
-    *ngFor="let task of fireTasks | async | filter:search |sort: ['updated_at', sort]" 
-    [task]="task"
-    (onDeleteTask) ="deleteTask(task)"
-    (onToggleReminder) = "toggleReminder(task)"
-></app-task-item>
+<div class="flex-container">
+    <div class="task-container">
+        <div class="task-status-title">
+            Ready
+        </div>
+        <app-task-item 
+            *ngFor="let task of fireTasks | async | taskStatusFilter: 0 | filter:search |sort: ['updated_at', sort]" 
+            [task]="task"
+            (onDeleteTask) ="deleteTask(task)"
+            (onToggleReminder) = "toggleReminder(task)"
+        ></app-task-item>
+    </div>
+    <div class="task-container">
+        <div class="task-status-title">
+            In-Progress
+        </div>
+        <app-task-item 
+            *ngFor="let task of fireTasks | async | taskStatusFilter: 1 | filter:search | sort: ['updated_at', sort]" 
+            [task]="task"
+            (onDeleteTask) ="deleteTask(task)"
+            (onToggleReminder) = "toggleReminder(task)"
+        ></app-task-item>
+    </div>
+    <div class="task-container">
+        <div class="task-status-title">
+            Done
+        </div>
+        <app-task-item 
+            *ngFor="let task of fireTasks | async | taskStatusFilter: 2 | filter:search |sort: ['updated_at', sort]" 
+            [task]="task"
+            (onDeleteTask) ="deleteTask(task)"
+            (onToggleReminder) = "toggleReminder(task)"
+        ></app-task-item>
+    </div>
+</div>
 <app-snackbar
     [toggle] ="snackBarToggle"
     [message] ="snackBarMessage"

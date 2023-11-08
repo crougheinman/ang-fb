@@ -3,6 +3,7 @@ export interface Task {
     day: string;
     reminder: boolean;
     text: string;
+    status: number;
     created_at?: any;
     updated_at?: any;
 }
