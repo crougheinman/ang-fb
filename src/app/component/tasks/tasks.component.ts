@@ -59,5 +59,19 @@ export class TasksComponent implements OnInit{
         }
       )
   }
+
+  moveLeft(task: Task) {
+    task.status = task.status - 1;
+    this.firestoreService
+      .updateStatus(task)
+      .subscribe();
+  }
+
+  moveRight(task: Task) {
+    task.status = task.status + 1;
+    this.firestoreService
+      .updateStatus(task)
+      .subscribe();
+  }
   
 }

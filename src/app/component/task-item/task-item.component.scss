@@ -19,3 +19,15 @@
 .task .created-at {
   font-size: 8px;
 }
+
+.status-navigation {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 0px 2px;
+  font-size: 20px;
+}
+
+.status-navigation * :hover{
+  color: #d1d1d1;
+}

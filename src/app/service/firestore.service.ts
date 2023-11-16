@@ -51,4 +51,15 @@ export class FirestoreService {
     return this.getTasks()
   }
 
+  updateStatus(task: Task){
+    const id: string | any =  task.id;
+    const docInstance = doc(this.fireStore, 'tasks', id);
+    const updateData = {
+      status: task.status,
+      updated_at: new Date()
+    }
+    updateDoc(docInstance, updateData);
+    return this.getTasks()
+  }
+
 }

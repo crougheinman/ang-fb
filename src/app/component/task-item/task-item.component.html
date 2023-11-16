@@ -4,6 +4,7 @@
     (dblclick) = "onToggle(task)"
 >
     <h3>{{ task.text }} 
+        {{ task.text }} 
         <fa-icon 
             (click)="onDelete(task)" 
             [ngStyle]="{'color':'red'}" 
@@ -12,4 +13,21 @@
     </h3>
     <p>{{ task.day }}</p>
     <small class="created-at">{{ task.updated_at.toDate() | date : 'medium' }}</small>
+    
+    <div class="status-navigation">
+        <div>
+            <fa-icon 
+                *ngIf="task.status > 0"
+                [icon]="faArrowCircleLeft"
+                (click)="moveLeft(task)"
+            ></fa-icon>
+        </div>
+        <div>
+            <fa-icon 
+                *ngIf="task.status < 2"
+                [icon]="faArrowCircleRight"
+                (click)="moveRight(task)"
+            ></fa-icon>
+        </div>
+    </div>
 </div>
